@@ -33,7 +33,6 @@ export function renderCourses(courses) {
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
                     <span class="course-unit">${course.unit} واحد</span>
-                    <button class="btn-share" style="cursor: pointer; font-size: 18px; padding: 4px;" title="اشتراک‌گذاری">🔗</button>
                 </div>
             </div>
             <div class="course-actions">
