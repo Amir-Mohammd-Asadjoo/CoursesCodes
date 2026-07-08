@@ -33,10 +33,16 @@ if (exportPdfBtn) {
 
 // راه‌اندازی اولیه برنامه
 async function init() {
+    // ۱. بارگذاری دروس از فایل دیتالودر
     state.allCourses = await loadCourses();
+    
+    // ۲. حتماً فیلتر اولیه را هم با تمام دروس پر کن تا سرچ فعال شود (مشکل اصلی همینجا بود)
     state.filteredCourses = [...state.allCourses];
     
+    // ۳. رندر کردن دروس روی صفحه
     renderCourses(state.allCourses);
+    
+    // ۴. فعال‌سازی تم و مودال
     initTheme();
     initModal();
 }
