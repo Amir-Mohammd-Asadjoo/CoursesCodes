@@ -2,11 +2,15 @@ import { loadCourses } from "./dataLoader.js";
 import { state } from "./core/state.js";
 import { renderCourses } from "./core/render.js";
 import { searchCourses } from "./core/search.js";
+
+// فایل‌های بخش ظاهر که داخل پوشه ui هستند
 import { initTheme } from "./ui/theme.js";
 import { initModal } from "./ui/modal.js";
-import { exportToCSV } from "./ui/excel.js";
-import { exportToPDF } from "./ui/pdf.js";
 import { showToast } from "./ui/toast.js";
+
+// فایل‌های بخش خروجی که داخل پوشه export هستند
+import { exportToCSV } from "./export/excel.js";
+import { exportToPDF } from "./export/pdf.js";
 
 const searchInput = document.getElementById("searchInput");
 const exportExcelBtn = document.getElementById("exportExcelBtn");
