@@ -1,0 +1,138 @@
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left,
+            rgba(99,102,241,.12),
+            transparent 35%),
+
+        radial-gradient(circle at bottom right,
+            rgba(6,182,212,.10),
+            transparent 35%),
+
+        radial-gradient(circle at center,
+            rgba(139,92,246,.07),
+            transparent 45%),
+
+        var(--background);
+
+    color: var(--text);
+
+    transition:
+        background .35s ease,
+        color .35s ease;
+}
+
+
+/* ==========================
+        Container
+========================== */
+
+.container{
+    width:min(1200px,92%);
+    margin-inline:auto;
+}
+
+
+/* ==========================
+        Main
+========================== */
+
+main{
+    padding-top:110px;
+    padding-bottom:40px;
+}
+
+
+/* ==========================
+        Section
+========================== */
+
+section{
+    margin-block:32px;
+}
+
+
+/* ==========================
+        Responsive
+========================== */
+
+@media (max-width:768px){
+
+    main{
+        padding-top:90px;
+    }
+
+    .container{
+        width:94%;
+    }
+
+}
+
+@media (max-width: 768px) {
+    /* ۱. هدر و بخش لوگو */
+    .header-content {
+        height: auto;
+        padding-block: 16px;
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .logo {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* ۲. بخش هیرو و سایز فونت‌ها */
+    main {
+        padding-top: 160px; /* چون هدر روی موبایل بلندتر میشه */
+    }
+
+    .hero h2 {
+        font-size: 26px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    /* ۳. باکس جستجو */
+    .search-box {
+        height: 56px;
+        padding: 0 16px;
+        margin-top: 24px;
+    }
+
+    /* ۴. گرید کارت‌ها روی موبایل‌های خیلی کوچک اسکرول نخوره */
+    .courses-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* ۵. تراز دکمه‌ها و المان‌های کارت */
+    .course-card {
+        padding: 16px;
+    }
+
+    .course-top h4 {
+        font-size: 18px;
+    }
+
+    .course-actions {
+        margin-top: 20px;
+    }
+}
+
+@media print {
+    .header, .hero, .search-box, .course-actions, .btn-share, .theme-toggle { 
+        display: none !important; 
+    }
+    main { 
+        padding-top: 0 !important; 
+    }
+    .course-card { 
+        border: 1px solid #ccc !important; 
+        box-shadow: none !important;
+        page-break-inside: avoid; 
+    }
+}

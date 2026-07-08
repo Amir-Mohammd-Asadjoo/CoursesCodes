@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>کد دروس دانشگاه آزاد</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+        rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="./assets/css/variables.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
+    <link rel="stylesheet" href="./assets/css/components.css">
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    <link rel="stylesheet" href="./assets/css/theme.css">
+
+</head>
+
+<body>
+
+    <header class="header">
+    <div class="container header-content">
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+            <div>
+                <h1>کد دروس دانشگاه آزاد</h1>
+                <p>جستجوی سریع و آسان دروس</p>
+            </div>
+        </div>
+
+        <!-- بخش دکمه‌های اکشن هدر -->
+        <div style="display: flex; gap: 8px; align-items: center;">
+            <button id="exportExcelBtn" class="theme-toggle" title="خروجی اکسل">📊</button>
+            <button id="exportPdfBtn" class="theme-toggle" title="پرینت / PDF">🖨️</button>
+            
+            <button id="themeToggle" class="theme-toggle" title="تعویض تم">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+    <main class="container">
+
+    <section class="hero">
+
+        <h2>
+            درس مورد نظر خود را جستجو کنید
+        </h2>
+
+        <p>
+            نام درس، کد درس یا بخشی از آن را وارد کنید.
+        </p>
+
+        <div class="search-box">
+
+            <svg class="search-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-4.3-4.3m1.3-5.2a6.5 6.5 0 11-13 0a6.5 6.5 0 0113 0z"/>
+
+            </svg>
+
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="..."
+            >
+
+        </div>
+        </section>
+        <section class="courses-section">
+
+    <div class="section-header">
+
+        <h3>دروس</h3>
+
+        <span
+            id="courseCount"
+            class="course-count">
+
+        </span>
+
+    </div>
+
+    <div id="coursesGrid" class="courses-grid">
+
+    </div>
+
+    </section>    
+
+    <!-- Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalCourseName"></h3>
+                <button id="closeModal" class="modal-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-row">
+                    <span class="modal-label">کد درس:</span>
+                    <span id="modalCourseCode" class="modal-value"></span>
+                </div>
+                <div class="modal-row">
+                    <span class="modal-label">تعداد واحد:</span>
+                    <span id="modalCourseUnit" class="modal-value"></span>
+                </div>
+                <div class="modal-row">
+                    <span class="modal-label">دسته‌بندی:</span>
+                    <span id="modalCourseCategory" class="modal-value"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalCopyBtn" class="btn btn-primary">کپی کد</button>
+                <button id="modalCloseBtn" class="btn btn-secondary">بستن</button>
+            </div>
+        </div>
+    </div>
+
+    </main>
+
+    <script type="module" src="./assets/js/app.js"></script>
+
+</body>
+
+
+</html>
