@@ -1,6 +1,6 @@
 import { showCourseDetails } from "../ui/modal.js";
 import { showToast } from "../ui/toast.js";
-// import { shareCourse } from "../ui/share.js";
+
 
 const coursesGrid = document.getElementById("coursesGrid");
 const courseCount = document.getElementById("courseCount");
@@ -52,11 +52,6 @@ export function renderCourses(courses) {
         card.querySelector(".btn-details").addEventListener("click", () => {
             showCourseDetails(course);
         });
-
-// // دکمه اشتراک‌گذاری
-// card.querySelector(".btn-share").addEventListener("click", () => {
-//     shareCourse(course);
-// });
 
         coursesGrid.appendChild(card);
     });
