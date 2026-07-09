@@ -1,4 +1,3 @@
-import { showCourseDetails } from "../ui/modal.js";
 import { showToast } from "../ui/toast.js";
 
 
@@ -45,9 +44,6 @@ export function renderCourses(courses) {
             showToast(`کد درس "${course.name}" کپی شد!`);
         });
 
-        card.querySelector(".btn-details").addEventListener("click", () => {
-            showCourseDetails(course);
-        });
 
         coursesGrid.appendChild(card);
     });
