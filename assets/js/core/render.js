@@ -1,6 +1,5 @@
 import { showToast } from "../ui/toast.js";
 
-
 const coursesGrid = document.getElementById("coursesGrid");
 const courseCount = document.getElementById("courseCount");
 
@@ -32,6 +31,8 @@ export function renderCourses(courses) {
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
                     <span class="course-unit">${course.unit} واحد</span>
+                    <!-- برچسب رشته یا همان category -->
+                    <span class="course-category">${course.category || course.department || 'عمومی'}</span>
                 </div>
             </div>
             <div class="course-actions">
@@ -43,7 +44,6 @@ export function renderCourses(courses) {
             navigator.clipboard.writeText(course.code);
             showToast(`کد درس "${course.name}" کپی شد!`);
         });
-
 
         coursesGrid.appendChild(card);
     });
