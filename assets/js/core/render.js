@@ -36,18 +36,15 @@ export function renderCourses(courses) {
                 </div>
             </div>
             <div class="course-actions">
-                <button class="btn btn-primary btn-copy">کپی کد</button>
-                <button class="btn btn-secondary btn-details">جزئیات</button>
+                <button class="btn btn-primary btn-copy" style="flex: 1;">کپی کد</button>
             </div>
         `;
 
-        // دکمه کپی کدهای درس
         card.querySelector(".btn-copy").addEventListener("click", () => {
             navigator.clipboard.writeText(course.code);
             showToast(`کد درس "${course.name}" کپی شد!`);
         });
 
-        // دکمه جزئیات (مودال)
         card.querySelector(".btn-details").addEventListener("click", () => {
             showCourseDetails(course);
         });
