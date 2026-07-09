@@ -21,16 +21,36 @@ searchInput.addEventListener("input", (e) => {
 
 if (departmentFilter) {
     departmentFilter.addEventListener("change", (e) => {
-        const selectedDept = e.target.value;
-        if (selectedDept === "all") {
+        const selectedCategory = e.target.value;
+        if (selectedCategory === "all") {
             state.filteredCourses = [...state.allCourses];
         } else {
             state.filteredCourses = state.allCourses.filter(
-                course => course.department === selectedDept
+                course => course.category === selectedCategory  
             );
         }
         renderCourses(state.filteredCourses);
     });
+}
+
+const categories = [...new Set(state.allCourses.map(c => c.category))];  
+const select = document.createElement("select");
+select.className = "department-select";
+
+const allOption = document.createElement("option");
+allOption.value = "all";
+allOption.textContent = "همه رشته‌ها";
+select.appendChild(allOption);
+
+categories.forEach(category => { 
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category; 
+    select.appendChild(option);
+});
+
+if (departmentFilter) {
+    departmentFilter.appendChild(select);
 }
 
 
