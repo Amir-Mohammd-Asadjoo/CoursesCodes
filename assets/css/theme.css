@@ -11,17 +11,17 @@
     --secondary: #06B6D4;
     --accent: #8B5CF6;
 
-    /* ========= Light Mode (کاملاً متمایز و زنده) ========= */
-    --background: #F1F5F9;       /* یک خاکستری-آبی روشن و شیک که با سفید هدر تضاد داره */
-    --surface: #FFFFFF;          /* سفید خالص برای هدر، کارت‌ها و سایدبار */
+    /* ========= Light Mode  ========= */
+    --background: #F1F5F9;       
+    --surface: #FFFFFF;          
     --surface-hover: #E2E8F0;
     
-    --text: #0F172A;              /* متن‌های کاملاً تیره و خوانا */
+    --text: #0F172A;              
     --text-secondary: #475569;
     --text-light: #94A3B8;
-    --border: #CBD5E1;           /* مرزهای کاملاً مشخص */
+    --border: #CBD5E1;           
 
-    /* هاله‌های رنگی مخصوص لایت‌مود (ملایم و پاستلی) */
+    
     --glow-1: rgba(99, 102, 241, 0.06);
     --glow-2: rgba(6, 182, 212, 0.05);
     --glow-3: rgba(139, 92, 246, 0.04);
@@ -36,25 +36,25 @@
 .dark {
     color-scheme: dark;
     
-    --background: #0B1120;       /* تاریکی عمیق */
-    --surface: #182235;          /* کارت‌های سورمه‌ای تیره */
+    --background: #0B1120;       
+    --surface: #182235;          
     --surface-hover: #202C43;
     
-    --text: #F8FAFC;              /* متن‌های کاملاً روشن */
+    --text: #F8FAFC;              
     --text-secondary: #CBD5E1;
     --text-light: #94A3B8;
     --border: #273449;
 
-    /* هاله‌های رنگی مخصوص دارک‌مود (نئونی و جذاب) */
+   
     --glow-1: rgba(99, 102, 241, 0.12);
     --glow-2: rgba(6, 182, 212, 0.08);
     --glow-3: rgba(139, 92, 246, 0.06);
     --header-bg: rgba(24, 34, 53, 0.85);
 }
 
-/* این بخش هم برای کسایی که تم سیستمشون دارکه و جاوااسکریپت هنوز لود نشده */
+
 @media (prefers-color-scheme: dark) {
-    :root:not(.light) { /* اگر کلاس light نداشت، دارک بشه */
+    :root:not(.light) { 
         color-scheme: dark;
         --background: #0B1120;
         --surface: #182235;
@@ -93,17 +93,13 @@ body {
     transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 
-/* ===================================================
-   اتصال تمام المان‌های قالب به متغیرهای هوشمند تم
-=================================================== */
 
-/* ۱. کل بدنه صفحه */
 body {
     background-color: var(--background) !important;
     color: var(--text) !important;
 }
 
-/* ۲. بخش هیرو و باکس جستجو */
+
 .hero {
     color: var(--text) !important;
 }
@@ -127,7 +123,7 @@ body {
     color: var(--text-secondary) !important;
 }
 
-/* ۳. گرید دروس و کارت‌هایی که با JS رندر میشن */
+
 .courses-section h3 {
     color: var(--text) !important;
 }
@@ -137,8 +133,7 @@ body {
     color: var(--primary) !important;
 }
 
-/* احتمالاً اسم کلاس کارت‌هات توی جاوااسکریپت چیزی مثل course-card هست */
-/* برای محکم‌کاری هم کلاس فرضی رو میذاریم هم تمام divهای داخل گرید رو تارگت میکنیم */
+
 .courses-grid > div, .course-card {
     background-color: var(--surface) !important;
     color: var(--text) !important;
@@ -151,7 +146,7 @@ body {
     border-color: var(--primary) !important;
 }
 
-/* ۴. پنجره مودال (جزئیات درس) */
+
 .modal-content {
     background-color: var(--surface) !important;
     color: var(--text) !important;
