@@ -1,4 +1,5 @@
 export const state = {
     allCourses: [],
-    filteredCourses: []
+    filteredCourses: [],
+    selectedDepartment: "all"  
 };
