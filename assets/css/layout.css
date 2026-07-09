@@ -1,25 +1,17 @@
-body {
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at top left,
-            rgba(99,102,241,.12),
-            transparent 35%),
-
-        radial-gradient(circle at bottom right,
-            rgba(6,182,212,.10),
-            transparent 35%),
-
-        radial-gradient(circle at center,
-            rgba(139,92,246,.07),
-            transparent 45%),
-
-        var(--background);
-
-    color: var(--text);
-
-    transition:
-        background .35s ease,
-        color .35s ease;
+@media (prefers-color-scheme: light) {
+    body {
+        background:
+            radial-gradient(circle at top left,
+                rgba(99,102,241, 0.2),  
+                transparent 40%),
+            radial-gradient(circle at bottom right,
+                rgba(6,182,212, 0.15),  
+                transparent 40%),
+            radial-gradient(circle at center,
+                rgba(139,92,246, 0.12),
+                transparent 50%),
+            var(--background);
+    }
 }
 
 
@@ -69,7 +61,6 @@ section{
 }
 
 @media (max-width: 768px) {
-    /* ۱. هدر و بخش لوگو */
     .header-content {
         height: auto;
         padding-block: 16px;
@@ -83,9 +74,8 @@ section{
         gap: 8px;
     }
 
-    /* ۲. بخش هیرو و سایز فونت‌ها */
     main {
-        padding-top: 160px; /* چون هدر روی موبایل بلندتر میشه */
+        padding-top: 160px; 
     }
 
     .hero h2 {
@@ -96,20 +86,20 @@ section{
         font-size: 15px;
     }
 
-    /* ۳. باکس جستجو */
+
     .search-box {
         height: 56px;
         padding: 0 16px;
         margin-top: 24px;
     }
 
-    /* ۴. گرید کارت‌ها روی موبایل‌های خیلی کوچک اسکرول نخوره */
+
     .courses-grid {
         grid-template-columns: 1fr;
         gap: 16px;
     }
 
-    /* ۵. تراز دکمه‌ها و المان‌های کارت */
+
     .course-card {
         padding: 16px;
     }
