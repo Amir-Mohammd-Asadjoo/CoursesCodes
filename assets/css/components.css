@@ -1,21 +1,19 @@
 .header {
-
     position: fixed;
-
     top: 0;
     right: 0;
     left: 0;
-
     z-index: 1000;
+    height: 80px; 
+}
 
-    backdrop-filter: blur(18px);
 
-    background: rgba(255,255,255,.72);
-
-    border-bottom: 1px solid var(--border);
-
-    transition: var(--transition);
-
+@media (max-width: 768px) {
+    .header {
+        height: auto;
+        max-height: 120px; 
+        overflow: hidden; 
+    }
 }
 
 
