@@ -223,12 +223,10 @@ async function init() {
 
     createDepartmentFilter();
     createShareButton();
-
     loadFromURL();
 
-    renderCourses(state.allCourses);
+    renderCourses(state.filteredCourses);
     updateShareButton();
     initTheme();
 }
-
 init();
