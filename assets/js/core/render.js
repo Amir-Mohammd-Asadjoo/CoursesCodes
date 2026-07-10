@@ -1,4 +1,5 @@
 import { showToast } from "../ui/toast.js";
+import { state } from "./state.js";
 
 const coursesGrid = document.getElementById("coursesGrid");
 const courseCount = document.getElementById("courseCount");
@@ -7,7 +8,6 @@ export function renderCourses(courses) {
     if (!coursesGrid || !courseCount) return;
     
     coursesGrid.innerHTML = "";
-
     if (courses.length === 0) {
         coursesGrid.innerHTML = `
             <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-secondary);">
@@ -22,16 +22,26 @@ export function renderCourses(courses) {
         const card = document.createElement("div");
         card.className = "course-card new";
         card.style.animationDelay = `${index * 30}ms`;
-
+        
+        const isSelected = state.selectedCourses.has(course.code);
+        
         card.innerHTML = `
             <div class="course-top">
-                <div style="flex: 1;">
-                    <h4>${course.name}</h4>
-                    <p class="course-code">${course.code}</p>
+                <div style="display: flex; align-items: center; gap: 12px; flex: 1;">
+                    <input 
+                        type="checkbox" 
+                        class="course-checkbox"
+                        data-course-code="${course.code}"
+                        ${isSelected ? 'checked' : ''}
+                        style="width: 20px; height: 20px; cursor: pointer;"
+                    >
+                    <div>
+                        <h4>${course.name}</h4>
+                        <p class="course-code">${course.code}</p>
+                    </div>
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
                     <span class="course-unit">${course.unit} واحد</span>
-                    <!-- برچسب رشته یا همان category -->
                     <span class="course-category">${course.category || course.department || 'عمومی'}</span>
                 </div>
             </div>
@@ -39,6 +49,16 @@ export function renderCourses(courses) {
                 <button class="btn btn-primary btn-copy" style="flex: 1;">کپی کد</button>
             </div>
         `;
+
+        const checkbox = card.querySelector(".course-checkbox");
+        checkbox.addEventListener("change", (e) => {
+            if (e.target.checked) {
+                state.selectedCourses.add(course.code);
+            } else {
+                state.selectedCourses.delete(course.code);
+            }
+            updateShareButton();
+        });
 
         card.querySelector(".btn-copy").addEventListener("click", () => {
             navigator.clipboard.writeText(course.code);
@@ -49,4 +69,12 @@ export function renderCourses(courses) {
     });
 
     courseCount.textContent = courses.length;
+}
+
+export function updateShareButton() {
+    const shareBtn = document.getElementById("shareBtn");
+    if (shareBtn) {
+        shareBtn.style.opacity = state.selectedCourses.size > 0 ? "1" : "0.5";
+        shareBtn.disabled = state.selectedCourses.size === 0;
+    }
 }
