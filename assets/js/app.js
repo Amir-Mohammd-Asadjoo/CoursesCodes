@@ -6,7 +6,7 @@ import { initTheme } from "./ui/theme.js";
 import { showToast } from "./ui/toast.js";
 import { exportToCSV } from "./export/excel.js";
 import { exportToPDF } from "./export/pdf.js";
-import { loadFromURL, copyShareURL, copyShareText, shareSelectedCourses } from "./export/share.js";
+import { loadFromURL, copyShareURL, shareSelectedCourses } from "./export/share.js";
 
 const searchInput = document.getElementById("searchInput");
 const exportExcelBtn = document.getElementById("exportExcelBtn");
@@ -15,7 +15,7 @@ const exportPdfBtn = document.getElementById("exportPdfBtn");
 if (searchInput) {
     searchInput.addEventListener("input", (e) => {
         state.filteredCourses = searchCourses(state.allCourses, e.target.value);
-        renderCourses(state.filteredCourses);
+        renderCourses(state.filteredCourses, false);
     });
 }
 
@@ -61,7 +61,7 @@ function createDepartmentFilter() {
             state.filteredCourses = searchCourses(state.filteredCourses, searchInput.value);
         }
 
-        renderCourses(state.filteredCourses);
+        renderCourses(state.filteredCourses, false);
     });
 
     departmentFilter.innerHTML = "";
@@ -69,7 +69,6 @@ function createDepartmentFilter() {
 }
 
 
- 
 function createShareButton() {
     const headerContent = document.querySelector(".header-content");
     if (!headerContent) return;
@@ -113,19 +112,31 @@ function createShareButton() {
         wrapper.appendChild(selectionCount);
         buttonContainer.insertBefore(wrapper, buttonContainer.firstChild);
 
+
         shareBtn.addEventListener("click", (e) => {
             e.stopPropagation();
-            showShareMenu(shareBtn);
+            handleShareClick(shareBtn);
         });
     }
 }
 
-function showShareMenu(triggerBtn) {
+function handleShareClick(triggerBtn) {
     if (state.selectedCourses.size === 0) {
         showToast("لطفا حداقل یک درس انتخاب کنید!");
         return;
     }
 
+    // اگر navigator.share پشتیبانی نشود، فقط کپی لینک
+    if (!navigator.share) {
+        copyShareURL();
+        return;
+    }
+
+    showShareMenu(triggerBtn);
+}
+
+function showShareMenu(triggerBtn) {
+    // حذف منوی قبلی
     const existingMenu = document.getElementById("shareMenu");
     if (existingMenu) existingMenu.remove();
 
@@ -146,17 +157,13 @@ function showShareMenu(triggerBtn) {
 
     const menuItems = [
         {
-            label: "📋 کپی لینک",
+            label: "🔗 کپی لینک",
             action: () => copyShareURL()
         },
         {
-            label: "💬 کپی متن جزئیات",
-            action: () => copyShareText()
-        },
-        ...(navigator.share ? [{
-            label: "🔄 اشتراک‌گذاری سیستمی",
+            label: "📱 اشتراک‌گذاری",
             action: () => shareSelectedCourses()
-        }] : [])
+        }
     ];
 
     menuItems.forEach((item, index) => {
@@ -165,7 +172,7 @@ function showShareMenu(triggerBtn) {
         menuItem.style.cssText = `
             display: block;
             width: 100%;
-            padding: 10px 16px;
+            padding: 12px 16px;
             border: none;
             background: none;
             text-align: right;
@@ -231,10 +238,4 @@ async function init() {
     initTheme();
 }
 
-if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-        state.filteredCourses = searchCourses(state.allCourses, e.target.value);
-        renderCourses(state.filteredCourses, false);
-    });
-}
 init();
