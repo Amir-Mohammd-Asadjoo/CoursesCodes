@@ -32,7 +32,6 @@ export function generateShareURL() {
     return shareURL;
 }
 
-
 export function copyShareURL() {
     const shareURL = generateShareURL();
     if (!shareURL) return;
@@ -42,7 +41,6 @@ export function copyShareURL() {
     });
 }
 
-
 export function loadFromURL() {
     const params = new URLSearchParams(window.location.search);
     const coursesParam = params.get("courses");
@@ -51,7 +49,6 @@ export function loadFromURL() {
 
     const courseCodes = coursesParam.split(",").map(c => c.trim());
     
-    // اضافه کردن به selectedCourses
     courseCodes.forEach(code => {
         if (state.allCourses.some(c => c.code === code)) {
             state.selectedCourses.add(code);
@@ -59,9 +56,13 @@ export function loadFromURL() {
     });
 
     if (state.selectedCourses.size > 0) {
+        state.filteredCourses = state.allCourses.filter(course => 
+            state.selectedCourses.has(course.code)
+        );
         showToast(`${state.selectedCourses.size} درس بارگذاری شد`);
     }
 }
+
 
 export function generateShareText() {
     if (state.selectedCourses.size === 0) {
@@ -108,7 +109,6 @@ export function shareSelectedCourses() {
         showToast("اطلاعات اشتراک‌گذاری کپی شد!");
     }
 }
-
 
 export function copyShareText() {
     const shareText = generateShareText();
