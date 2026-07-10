@@ -1,5 +1,6 @@
 export const state = {
     allCourses: [],
     filteredCourses: [],
-    selectedCategory: "all" 
+    selectedCategory: "all",
+    selectedCourses: new Set() 
 };
