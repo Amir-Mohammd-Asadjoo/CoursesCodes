@@ -33,9 +33,9 @@ export function renderCourses(courses) {
                         class="course-checkbox"
                         data-course-code="${course.code}"
                         ${isSelected ? 'checked' : ''}
-                        style="width: 20px; height: 20px; cursor: pointer;"
+                        style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary-color, #6366f1);"
                     >
-                    <div>
+                    <div style="flex: 1;">
                         <h4>${course.name}</h4>
                         <p class="course-code">${course.code}</p>
                     </div>
@@ -54,11 +54,20 @@ export function renderCourses(courses) {
         checkbox.addEventListener("change", (e) => {
             if (e.target.checked) {
                 state.selectedCourses.add(course.code);
+                card.style.borderColor = "var(--primary-color, #6366f1)";
+                card.style.background = "var(--bg-selected, rgba(99, 102, 241, 0.05))";
             } else {
                 state.selectedCourses.delete(course.code);
+                card.style.borderColor = "";
+                card.style.background = "";
             }
             updateShareButton();
         });
+
+        if (isSelected) {
+            card.style.borderColor = "var(--primary-color, #6366f1)";
+            card.style.background = "var(--bg-selected, rgba(99, 102, 241, 0.05))";
+        }
 
         card.querySelector(".btn-copy").addEventListener("click", () => {
             navigator.clipboard.writeText(course.code);
@@ -73,8 +82,32 @@ export function renderCourses(courses) {
 
 export function updateShareButton() {
     const shareBtn = document.getElementById("shareBtn");
+    const selectionCount = document.getElementById("selectionCount");
+
     if (shareBtn) {
-        shareBtn.style.opacity = state.selectedCourses.size > 0 ? "1" : "0.5";
-        shareBtn.disabled = state.selectedCourses.size === 0;
+        if (state.selectedCourses.size > 0) {
+            shareBtn.style.opacity = "1";
+            shareBtn.disabled = false;
+            if (selectionCount) {
+                selectionCount.textContent = state.selectedCourses.size;
+                selectionCount.style.display = "inline-block";
+            }
+        } else {
+            shareBtn.style.opacity = "0.5";
+            shareBtn.disabled = true;
+            if (selectionCount) {
+                selectionCount.style.display = "none";
+            }
+        }
     }
+}
+
+export function searchCourses(courses, searchTerm) {
+    const term = searchTerm.toLowerCase().trim();
+    if (term === "") return [...courses];
+    
+    return courses.filter(course => 
+        course.name.toLowerCase().includes(term) || 
+        course.code.toLowerCase().includes(term)
+    );
 }
