@@ -223,10 +223,18 @@ async function init() {
 
     createDepartmentFilter();
     createShareButton();
+
     loadFromURL();
 
-    renderCourses(state.filteredCourses);
+    renderCourses(state.filteredCourses, true);
     updateShareButton();
     initTheme();
+}
+
+if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+        state.filteredCourses = searchCourses(state.allCourses, e.target.value);
+        renderCourses(state.filteredCourses, false);
+    });
 }
 init();
