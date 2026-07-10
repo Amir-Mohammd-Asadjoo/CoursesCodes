@@ -12,19 +12,14 @@ This repository is a heavily optimized, production-ready fork of the original Co
 * ❌ **Monolithic Architecture:** Entire application (HTML, CSS, JavaScript) crammed into a single `index.html` file (~2000+ lines).
 * ❌ **Light Mode Bug:** Course names were not clearly visible in light mode due to poor contrast and styling issues.
 * ❌ **Performance Issues:** Slow rendering and filtering; animations causing lag on search operations.
-* ❌ **No URL Sharing:** Unable to share selected courses with others.
 * ❌ **Limited Maintainability:** Difficult to add new features, fix bugs, or extend functionality.
 
 ### This Fork's Solutions
 * ✅ **Modular Architecture:** Completely decoupled codebase into isolated, reusable ES6+ modules.
 * ✅ **Fixed Light Mode:** Proper contrast, readable text, and smooth theme transitions.
 * ✅ **Performance Optimized:** Animations only on initial load, efficient state management, reduced DOM manipulation.
-* ✅ **URL-Based Sharing:** Share selected courses via shareable links with auto-load on visit.
 * ✅ **Enhanced Maintainability:** Clear separation of concerns (UI, state, logic, styles).
 * ✅ **New Features:**
-  * Multi-course selection with checkboxes.
-  * URL-based sharing system.
-  * Excel & PDF export functionality.
   * Professional dark/light theme switching.
   * Toast notifications and better UX.
 
